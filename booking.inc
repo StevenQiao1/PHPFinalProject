@@ -237,8 +237,7 @@ $available = array(
 			
 			echo "<br><label for='booked'>Select Tutor and Time</label><br>";
 			echo "<select class='select' name='booked' id='booked'>";
-			
-			
+					
 			// if tutors are available, insert options to drop menu
 			if (!$noTutors) {
 
@@ -261,7 +260,7 @@ $available = array(
 			
 						//displays value as an option if it has not been booked
 						if (!$invalidOption) {
-							echo "<option value='$value'> $value </option>";
+							echo "<option value='$value' data-courses='join(",", $phparray[$i]['course'])'> $value </option>";
 						} // if
 					} //foreach 
 				} // for
