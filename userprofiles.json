@@ -1,0 +1,17 @@
+[
+    {
+        "fname": "dsafqe",
+        "lname": "ewdsa",
+        "grade": "Grade 10",
+        "course": [
+            "cn9",
+            "ma9"
+        ],
+        "availability": [
+            "tueA"
+        ],
+        "comment": "dfeqwrs",
+        "UID": "1",
+        "imagetype": "png"
+    }
+]

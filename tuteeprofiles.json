@@ -1,0 +1,28 @@
+[
+    {
+        "fname": "Harry",
+        "lname": "Jiang",
+        "grade": "11",
+        "course": [
+            "phy12"
+        ],
+        "booked": "Steven Qiao Friday Before School"
+    },
+    {
+        "fname": "",
+        "lname": "",
+        "grade": "11",
+        "booked": "Steven Qiao Monday Before School"
+    },
+    {
+        "fname": "harry",
+        "lname": "jiang",
+        "grade": "10",
+        "course": [
+            "phygeo12",
+            "phy12",
+            "pcma12"
+        ],
+        "booked": "Steven Qiao Wednesday After School"
+    }
+]

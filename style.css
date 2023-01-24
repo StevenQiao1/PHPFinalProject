@@ -1,0 +1,1415 @@
+/*
+font-family: 'Lato', sans-serif;
+font-family: 'Playfair Display', serif;
+*/
+
+/* Tutor Form Page */
+table th,
+table td {
+	padding: 5px;
+}
+
+.error {
+	color: #FF0000;
+}
+
+#nav {
+	grid-area: nav;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+.label {
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/*
+.unhidden {
+    display: grid !important;
+	grid-template-areas: 
+	"left bigImage right";
+}
+*/
+
+#lightbox {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+#positionBigImage {
+	display: grid;
+	grid-template-areas:
+		"left bigImage right"
+		"left boundary right";
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+#boundaryBigImage {
+	display: block;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
+	grid-area: boundary;
+	min-width: 45vw;
+	max-width: 50vw;
+}
+
+.thumb {
+	margin: 10px;
+	border: 10px solid #000;
+}
+
+#x {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+#bigImage {
+	margin-top: 10%;
+	display: block;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
+	grid-area: bigImage;
+	margin-bottom: 5vh;
+	max-width: 40vw;
+	min-width: 35vw;
+}
+
+#info {
+	font-family: 'Lato', sans-serif;
+	color: #000;
+	display: block;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFF;
+	margin-bottom: 50px;
+	border: 1px solid #000;
+	box-shadow: 2px 2px #000;
+	line-height: 1.5;
+	font-size: 20px;
+	padding: 15px;
+}
+
+#info #download button {
+	display: block;
+	font-family: 'Lato', sans-serif;
+	color: #000;
+	background-color: #FFF;
+	border-radius: 100px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#info #download button a {
+	color: #000;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+#info #download button a:hover,
+#info #download button:hover {
+	cursor: pointer;
+}
+
+#cardlist {
+	list-style-type: disc;
+}
+
+#name,
+#grade,
+#aboutme,
+#courses {
+	margin-bottom: 10px;
+}
+
+/*Navigation Bar*/
+
+#header {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #000;
+	padding: 0 25px;
+	transition: 0.3s;
+}
+
+.logo a img {
+	width: 10vh;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+.logo #navhead {
+	font-size: 35px;
+	text-decoration: none;
+	color: #FFF;
+	font-family: 'Playfair Display', serif;
+	padding-left: 15px;
+	font-weight: bold;
+}
+
+.logo #navlink {
+	width: auto;
+}
+
+#nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: 'Playfair Display', serif;
+}
+
+.menu {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	align-items: center;
+	z-index: 1;
+	transition: 0.5s;
+}
+
+.menu li {
+	list-style-type: none;
+	width: 10vw;
+	text-align: center;
+}
+
+.menu li a {
+	color: #FFF;
+	text-decoration: none;
+	display: block;
+	padding: 30px 10px;
+	line-height: 1;
+	transition: 0.3s;
+	font-size: 20px;
+}
+
+.menu li a:hover {
+	box-shadow: 0 -5px 0px #FFF inset,
+		500px 0 0 rgba(255, 255, 255, 0.03) inset;
+	padding: 25px 10px 35px 10px;
+}
+
+.hamburger {
+	position: relative;
+	width: 30px;
+	height: 4px;
+	background-color: #FFF;
+	border-radius: 10px;
+	cursor: pointer;
+	z-index: 2;
+	transition: 0.3s;
+}
+
+.hamburger:before,
+.hamburger:after {
+	content: "";
+	position: absolute;
+	height: 4px;
+	right: 0;
+	background-color: #FFF;
+	border-radius: 10px;
+	transition: 0.3s;
+}
+
+.hamburger:before {
+	top: -10px;
+	width: 20px;
+}
+
+.hamburger:after {
+	top: 10px;
+	width: 25px;
+}
+
+.toggle-menu {
+	position: absolute;
+	width: 30px;
+	height: 100%;
+	z-index: 3;
+	cursor: pointer;
+	opacity: 0;
+}
+
+.hamburger,
+.toggle-menu {
+	display: none;
+}
+
+#nav input:checked~.hamburger {
+	background: transparent;
+}
+
+#nav input:checked~.hamburger:before {
+	top: 0;
+	transform: rotate(-45deg);
+	width: 30px;
+}
+
+#nav input:checked~.hamburger:after {
+	top: 0;
+	transform: rotate(45deg);
+	width: 30px;
+}
+
+#nav input:checked~.menu {
+	right: 0;
+	box-shadow: -20px 0 40px rgba(0, 0, 0, 0);
+}
+
+/*footer*/
+#footerposition {
+	display: grid;
+}
+
+#footercontent {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	text-align: center;
+}
+
+#footer1,
+#footer2,
+#footer3 {
+	color: #FFF;
+	background-color: black;
+	height: auto;
+	font-family: 'Playfair Display', serif;
+}
+
+#footer1 {
+	padding: 10px;
+}
+
+#footer1 h1 {
+	font-size: 60px;
+}
+
+#footer2 {
+	padding: 25px;
+}
+
+#footer2 p {
+	text-align: start;
+	font-size: 15px;
+}
+
+#footer3 p {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#footerlist {
+	list-style: none;
+	text-align: center;
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+	font-size: 20px;
+	line-height: 40px;
+	font-weight: bold;
+}
+
+#footerlist a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+#footerlist a:hover {
+	text-decoration: underline;
+}
+
+#right {
+	display: flex;
+	font-size: 150px;
+	text-align: right;
+	grid-area: right;
+	align-items: center;
+	justify-content: center;
+	color: #FFF;
+}
+
+#left {
+	display: flex;
+	font-size: 150px;
+	grid-area: left;
+	text-align: left;
+	align-items: center;
+	justify-content: center;
+	color: #FFF;
+}
+
+#left:hover,
+#right:hover {
+	cursor: pointer;
+}
+
+/* home.inc grid areas */
+#home {
+	display: grid;
+	width: 100%;
+	grid-template:
+		'hero hero hero hero hero hero' auto
+		'hero hero hero hero hero hero' auto
+		'filter search search search search search' auto
+		'filter search search search search search' auto
+		'filter main main main main main' auto
+		'filter main main main main main' auto
+		'filter main main main main main' auto;
+}
+
+#searchsection {
+	grid-area: search;
+}
+
+#main {
+	grid-area: main;
+}
+
+#filtertutor {
+	grid-area: filter;
+	min-width: 25vw;
+}
+
+#footerposition {
+	grid-area: footer;
+}
+
+#hero {
+	grid-area: hero;
+}
+
+#tuteehero {
+	display: flex;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+		url(images/hero4.jpg);
+	color: #FFF;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 5vh;
+	height: 60vh;
+	margin: 0;
+	font-family: 'Playfair Display', serif;
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+#tuteehero h1 {
+	color: #FFF;
+}
+
+#tuteeform {
+	grid-area: tuteeform;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Lato', sans-serif;
+	font-size: 25px;
+}
+
+#tuteeform #lname,
+#tuteeform #fname,
+#tutorform #lname,
+#tutorform #fname {
+	font-family: 'Lato', sans-serif;
+	height: 5vh;
+	padding: 10px;
+	font-size: 20px;
+	border-radius: 5px;
+	border: 1px solid #000;
+	box-shadow: 2px 2px #000;
+}
+
+#tuteeform #lname,
+#tuteeform #fname {
+	width: 90%;
+}
+
+#tutorform #lname,
+#tutorform #fname {
+	width: 45%;
+}
+
+#tuteeform #tuteesubmit,
+#tutorform #tutorsubmit {
+	font-family: 'Lato', sans-serif;
+	height: 7vh;
+	min-height: 54px;
+	width: 35%;
+	color: #000;
+	background-color: #FFF;
+	border: 1px solid #000;
+	margin-left: 2%;
+	box-shadow: 5px 5px #000;
+	border-radius: 5px;
+	font-size: 20px;
+	margin-top: 5vh;
+	margin-bottom: 5vh;
+	font-weight: bold;
+}
+
+#tuteeform #tuteesubmit:hover,
+#tutorform #tutorsubmit:hover {
+	background-color: #000;
+	cursor: pointer;
+	transition-duration: 0.75s;
+	color: #FFF;
+}
+
+.select {
+	font-size: 25px;
+	font-family: 'Lato', sans-serif;
+	border-radius: 5px;
+	border: 1px solid #000;
+	box-shadow: 2px 2px #000;
+}
+
+.formdiv {
+	border: 1px solid #000;
+	border-radius: 5px;
+	padding: 35px;
+}
+
+#tuteepage {
+	grid-area: tuteepage;
+	display: grid;
+	grid-template:
+		"tuteehero" auto
+		"tuteeform" auto;
+}
+
+/* Tutor Form Page */
+
+#tutorpage {
+	grid-area: tutorpage;
+	display: grid;
+	grid-template:
+		"tutorhero" auto
+		"tutorform" auto;
+}
+
+#tutorhero {
+	grid-area: tutorhero;
+	display: flex;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+		url(images/hero7.jpg);
+	color: #FFF;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 5vh;
+	height: 60vh;
+	margin: 0;
+	font-family: 'Playfair Display', serif;
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+#tutorform {
+	grid-area: tutorform;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Lato', sans-serif;
+	font-size: 25px;
+}
+
+#comment {
+	border: 1px solid #000;
+	box-shadow: 5px 5px #000;
+	border-radius: 5px;
+}
+
+#fileToUpload {
+	border: 1px solid #000;
+	box-shadow: 5px 5px #000;
+	padding: 25px;
+	border-radius: 5px;
+}
+
+/* Hero Image */
+#hero {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+		url(images/hero3.jpg);
+	color: #FFF;
+	text-align: center;
+	font-size: 5vh;
+	height: 60vh;
+	margin: 0;
+}
+
+#hero h1 {
+	margin-top: 10%;
+	margin-bottom: 10%;
+	font-family: 'Playfair Display', serif;
+}
+
+/* Search bar and search section */
+#searchsection {
+	min-height: 20vh;
+	display: flex;
+	justify-content: center;
+	padding-top: 0;
+	width: 85%;
+}
+
+#search,
+#findtutors {
+	font-family: 'Lato', sans-serif;
+	font-size: 1.5vw;
+	border-radius: 10px;
+	margin-top: 7.5vh;
+}
+
+#search {
+	width: 50vw;
+	height: 7vh;
+	border: none;
+	padding-right: 5%;
+	padding-left: 50px;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	background-image: url(https://cdn2.hubspot.net/hubfs/4004166/bioticresearch_website_assets/images/search_icon.png);
+	background-repeat: no-repeat;
+	background-position: 10px;
+	border: 1px solid #000;
+	box-shadow: 5px 5px #000;
+}
+
+#findtutors {
+	height: 7vh;
+	min-height: 54px;
+	width: 15vw;
+	color: #000;
+	background-color: #FFF;
+	border: 1px solid #000;
+	margin-left: 2%;
+	box-shadow: 5px 5px #000;
+}
+
+#findtutors:hover {
+	background-color: #000;
+	cursor: pointer;
+	transition-duration: 0.75s;
+	color: #FFF;
+}
+
+#clear {
+	position: absolute;
+	top: 7.75vh;
+	border-radius: 5px;
+	right: 26vw;
+	z-index: 2;
+	border: none;
+	font-size: 30px;
+	cursor: pointer;
+	color: #000;
+	background-color: #FFF;
+	padding: 0;
+	margin: 0;
+}
+
+textarea {
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+}
+
+/* Home Thumbnails */
+#main {
+	padding-top: 0;
+	max-width: 70vw;
+	min-height: 70vh;
+}
+
+.card {
+	width: 17.5vw;
+	border: 1px solid #000;
+	box-shadow: 10px 10px #000;
+	margin-right: 2.5vw;
+	margin-bottom: 10vh;
+	margin-left: 1vw;
+}
+
+/* Side Filters */
+.collapsible {
+	background-color: #FFF;
+	color: #000;
+	cursor: pointer;
+	padding: 18px;
+	width: 75%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 20px;
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	margin-left: 2vw;
+	border: 1px solid #000;
+	box-shadow: 5px 5px #000;
+}
+
+.active {
+	background-color: #555;
+}
+
+.collapsible:hover {
+	background-color: #000;
+	box-shadow: 5px 5px #FFF;
+	cursor: pointer;
+	transition-duration: 0.75s;
+	color: #FFF;
+}
+
+.collapsible:after {
+	content: '\002B';
+	color: white;
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
+}
+
+.active:after {
+	content: "\2212";
+}
+
+.content,
+.collapsible {
+	margin-bottom: 3%;
+}
+
+.content {
+	padding: 0 18px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	background-color: #FFF;
+	margin-left: 2vw;
+	width: 20vw;
+	margin-bottom: 2.5vh;
+}
+
+.content input,
+.content label {
+	font-family: 'Lato', sans-serif;
+	line-height: 1.8;
+}
+
+h3 {
+	font-family: 'Lato', sans-serif;
+	font-size: 35px;
+	line-height: 1.8;
+	margin-left: 2vw;
+	margin-top: 15%;
+}
+
+#ptlogo {
+	width: 75%;
+	margin-top: 15%;
+	margin-left: 5%;
+	border: 1px solid #000;
+	box-shadow: 10px 10px #000;
+}
+
+@media only screen and (max-width: 1850px) {
+	#searchsection {
+		max-height: 15vh;
+	}
+}
+
+@media only screen and (max-width: 1440px) {
+
+	.logo #navhead {
+		font-size: 25px;
+	}
+
+	.menu li a {
+		font-size: 15px;
+		padding: 0;
+	}
+
+	.content,
+	.collapsible {
+		width: 85%;
+		font-size: 15px;
+		margin-bottom: 4%;
+		margin-right: 5%;
+		margin-left: 5%;
+	}
+
+	#ptlogo {
+		width: 85%;
+		margin-top: 20%;
+	}
+
+	#footer1 h1,
+	#footer2 h1,
+	#footer3 h1 {
+		font-size: 30px;
+	}
+
+	#footer2 {
+		padding: 10px;
+	}
+
+	#footer2 p,
+	#footer3 li {
+		font-size: 15px;
+	}
+
+	#footer3 li {
+		line-height: 2.5;
+	}
+
+	#search {
+		width: 75%;
+		font-size: 25px;
+		padding-left: 50px;
+	}
+
+	#searchsection {
+		min-height: 20vh;
+		width: 65vw;
+		padding-right: 10%;
+	}
+
+	.card {
+		width: 25%;
+	}
+
+	#filtertutor {
+		max-width: 80%;
+	}
+
+	#main {
+		min-height: 65vh;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	#searchsection {
+		min-height: 20vh;
+	}
+
+	#main {
+		min-height: 60vh;
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	#searchsection {
+		min-height: 20vh;
+	}
+}
+
+/* Media Query for tablets */
+@media only screen and (max-width: 800px) {
+
+	.hamburger,
+	.toggle-menu {
+		display: block;
+	}
+
+	.header {
+		padding: 10px 20px;
+	}
+
+	.menu {
+		justify-content: start;
+		align-items: center;
+		flex-direction: column;
+		position: fixed;
+		top: 0;
+		right: -300px;
+		background-color: #000;
+		height: 100%;
+		padding-top: 65px;
+	}
+
+	.menu li {
+		width: 100%;
+	}
+
+	.menu li a,
+	.menu li a:hover {
+		padding: 30px;
+		font-size: 24px;
+		box-shadow: 0 1px 0 #FFF inset;
+	}
+
+	#main {
+		padding-top: 5%;
+		padding-left: 2.5%;
+		padding-right: 2.5%;
+		min-height: 65vh;
+	}
+
+	#home {
+		display: grid;
+		width: 100%;
+		grid-template:
+			'hero hero' auto
+			'filter search' auto
+			'filter main' auto;
+	}
+
+	#findtutors {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 3vh;
+		width: 45%;
+		font-size: 20px;
+	}
+
+	#searchsection {
+		min-width: 50vw;
+		display: block;
+		left: 0;
+		right: 0;
+		padding-right: 5%;
+		max-height: 100%;
+	}
+
+	#search {
+		width: 85%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 20px;
+		padding-left: 12.5%;
+	}
+
+	.content,
+	.collapsible {
+		width: 85%;
+		font-size: 15px;
+		margin-bottom: 4%;
+		margin-right: 5%;
+		margin-left: 5%;
+	}
+
+	#ptlogo {
+		width: 85%;
+	}
+
+	#filtertutor {
+		max-width: 35vw;
+	}
+
+	#footer1 h1,
+	#footer2 h1,
+	#footer3 h1 {
+		font-size: 30px;
+	}
+
+	#footer2 {
+		padding: 10px;
+	}
+
+	#footer2 p,
+	#footer3 li {
+		font-size: 10px;
+	}
+
+	#footer3 li {
+		line-height: 2.5;
+	}
+
+	.card {
+		width: 40%;
+		margin-top: 7.5%;
+	}
+
+	#tutorform,
+	#tuteeform {
+		width: 80vw;
+		margin-right: 10%;
+		margin-left: 10%;
+		font-size: 20px;
+	}
+
+	.select {
+		font-size: 20px;
+	}
+
+	#hero {
+		height: 50vh;
+	}
+}
+
+/* Media Query for mobile device */
+@media only screen and (max-width: 600px) {
+	
+	#left,
+	#right {
+		font-size: 100px;
+	}
+	
+	#info,
+	#info #download button a 	{
+		font-size: 15px;
+	}
+	
+	#boundaryBigImage {
+		min-width: 55vw;
+	}
+	
+	#bigImage {
+		min-width: 55vw;
+	}
+
+	#tutorform #lname,
+	#tutorform #fname {
+		width: 90%;
+	}
+
+	textarea {
+		font-family: 'Lato', sans-serif;
+		font-size: 10px;
+	}
+
+	#findtutors {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 3vh;
+		width: 45%;
+		font-size: 20px;
+	}
+
+	#ptlogo {
+		display: none;
+	}
+
+	#searchsection {
+		width: 100%;
+		display: block;
+		left: 0;
+		right: 0;
+	}
+
+	#search {
+		margin-top: 3vh;
+		width: 87.5vw;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 25px;
+		padding-left: 10%;
+	}
+
+	ul {
+		list-style: none;
+		display: grid;
+		grid-template-columns: 1fr;
+		padding: 0;
+		margin: 0;
+	}
+
+	#footercontent {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	#footer2 p,
+	#footer3 p {
+		margin-right: 50px;
+		margin-left: 50px;
+	}
+
+	#footer3 {
+		padding-bottom: 20px;
+	}
+
+	#icon,
+	#footerposition {
+		width: 100%;
+	}
+
+	#home {
+		grid-area: home;
+		display: grid;
+		width: 100%;
+		grid-template:
+			'hero' auto
+			'search' auto
+			'filter' auto
+			'main' auto;
+	}
+
+	body {
+		display: grid;
+		width: 100%;
+		grid-template:
+			'nav' auto
+			'tutorpage' auto
+			'tuteepage' auto
+			'home' auto
+			'footer' auto;
+		overflow-x: hidden;
+	}
+
+	#hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-width: 100%;
+		height: 50vh;
+	}
+
+	#hero h1 {
+		font-size: 65px;
+		margin-right: 20px;
+		margin-left: 20px;
+	}
+
+	#tutorhero h1,
+	#tuteehero h1 {
+		font-size: 65px;
+	}
+
+	#main {
+		max-width: 100%;
+		padding-top: 0;
+	}
+
+	#searchsection {
+		min-height: 22.5vh;
+		padding-right: 0;
+	}
+
+	.content,
+	.collapsible {
+		width: 85%;
+		font-size: 25px;
+		margin-bottom: 4%;
+		margin-right: 5%;
+		margin-left: 5%;
+	}
+
+	#filtertutor {
+		max-width: 100%;
+	}
+
+	#filtertutor h3 {
+		text-align: center;
+		font-size: 30px;
+		line-height: 1;
+	}
+
+	.card {
+		width: 70%;
+		margin-right: 15%;
+		margin-left: 15%;
+		margin-top: 2.5%;
+		margin-bottom: 12.5%;
+	}
+
+	#footer1 h1 {
+		font-size: 40px;
+		margin-left: 25px;
+		margin-right: 25px;
+	}
+
+	#footer2 h1 {
+		font-size: 25px;
+	}
+
+	#footer2 p {
+		font-size: 10px;
+	}
+
+
+}
+
+@media only screen and (max-width: 500px) {
+
+	#icon,
+	#footerposition {
+		width: 100%;
+	}
+
+	#search {
+		width: 85vw;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 20px;
+		padding-left: 12.5%;
+		margin-top: 3vh;
+	}
+
+	#findtutors {
+		height: 5vh;
+	}
+
+	#home {
+		grid-area: home;
+		display: grid;
+		width: 100%;
+		grid-template:
+			'hero' auto
+			'search' auto
+			'filter' auto
+			'main' auto;
+	}
+
+	body {
+		display: grid;
+		width: 100%;
+		grid-template:
+			'nav' auto
+			'tutorpage' auto
+			'tuteepage' auto
+			'home' auto
+			'footer' auto;
+		overflow-x: hidden;
+	}
+
+	#hero {
+		max-width: 100%;
+	}
+
+	#tutorhero h1,
+	#tuteehero h1,
+	#hero h1 {
+		font-size: 45px;
+	}
+
+	#main {
+		max-width: 100%;
+	}
+
+	#searchsection {
+		min-height: 22.5vh;
+	}
+
+	.content,
+	.collapsible {
+		width: 85%;
+		font-size: 20px;
+		margin-bottom: 4%;
+		margin-right: 5%;
+		margin-left: 5%;
+	}
+
+	#filtertutor h3 {
+		text-align: center;
+		font-size: 25px;
+		line-height: 1;
+	}
+
+	.card {
+		width: 70%;
+		margin-right: 15%;
+		margin-left: 15%;
+		margin-top: 2.5%;
+		margin-bottom: 20%;
+	}
+
+	#footer1 h1 {
+		font-size: 40px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	#footer2 h1 {
+		font-size: 25px;
+	}
+
+	#footer2 p {
+		font-size: 10px;
+	}
+
+	#tutorform,
+	#tuteeform {
+		display: block;
+		width: 90%;
+		margin-right: auto;
+		margin-left: auto;
+		font-size: 15px;
+	}
+
+	.select {
+		font-size: 15px;
+	}
+
+	#comment {
+		width: 80%;
+	}
+
+	.logo #navhead {
+		font-size: 15px;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	
+	#left,
+	#right {
+		font-size: 50px;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	
+	#info,
+	#info #download button a {
+		font-size: 12px;
+	}
+	
+	#boundaryBigImage {
+		min-width: 65vw;
+	}
+	
+	#bigImage {
+		min-width: 65vw;
+	}
+
+	#icon,
+	#footerposition {
+		width: 100%;
+	}
+
+	#search {
+		width: 87.5vw;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 15px;
+		padding-left: 15%;
+		margin-top: 3vh;
+	}
+
+	#findtutors {
+		height: 5vh;
+	}
+
+	#home {
+		grid-area: home;
+		display: grid;
+		width: 100%;
+		grid-template:
+			'hero' auto
+			'search' auto
+			'filter' auto
+			'main' auto;
+	}
+
+	body {
+		display: grid;
+		width: 100%;
+		grid-template:
+			'nav' auto
+			'tutorpage' auto
+			'tuteepage' auto
+			'home' auto
+			'footer' auto;
+		overflow-x: hidden;
+	}
+
+	#hero {
+		max-width: 100%;
+	}
+
+	#tutorhero h1,
+	#tuteehero h1,
+	#hero h1 {
+		font-size: 35px;
+	}
+
+	#main {
+		max-width: 100%;
+	}
+
+	#searchsection {
+		min-height: 22.5vh;
+	}
+
+	.content,
+	.collapsible {
+		width: 85%;
+		font-size: 15px;
+		margin-bottom: 4%;
+		margin-right: 5%;
+		margin-left: 5%;
+	}
+
+	#filtertutor h3 {
+		text-align: center;
+		font-size: 20px;
+		line-height: 1;
+	}
+
+	.card {
+		width: 70%;
+		margin-right: 15%;
+		margin-left: 15%;
+		margin-top: 2.5%;
+		margin-bottom: 20%;
+	}
+
+	#footer1 h1 {
+		font-size: 40px;
+	}
+
+	#footer2 h1 {
+		font-size: 25px;
+	}
+
+	#footer2 p {
+		font-size: 10px;
+	}
+
+	#tutorform,
+	#tuteeform {
+		display: block;
+		width: 95%;
+		margin-right: auto;
+		margin-left: auto;
+		font-size: 10px;
+	}
+
+	.select {
+		font-size: 12px;
+	}
+
+	#comment {
+		width: 80%;
+	}
+
+}
