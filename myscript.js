@@ -182,9 +182,20 @@ function getCourses(element) {
 	} else {
 		checkedArray.pop(element.value);
 	} // if
-
-	console.log(checkedArray);
+	filterCourses()
 } // getCourses
+
+function filterCourses() {
+	var coursesDom = document.getElementById("booked");
+	for(var i = coursesDom.length - 1; i >= 0; i --) {
+		var coursesStr = coursesDom[i].dataset.courses
+		var coursesArr = coursesStr.split(",")
+		var intersect = coursesArr.filter(value => checkedArray.includes(value))
+		if(!intersect.length) {
+			coursesDom.remove(i)
+		}
+	}
+}
 
 function fetchData(element) {
 
