@@ -81,6 +81,7 @@ var courseList =
 
 var storedImg = localStorage.getItem("storedImg");
 var checkedArray = [];
+var courseListDOM;
 
 var coll = document.getElementsByClassName("collapsible");
 var j;
@@ -177,15 +178,41 @@ function togglemenu() {
 } //togglemenu
 
 function getCourses(element) {
-	if (element.checked == true) {
-		checkedArray.push(element.value);
-	} else {
-		checkedArray.pop(element.value);
-	} // if
+	switch (element.type) {
+		case "radio":
+			checkedArray = [element.value]
+			break;
+		case "checkbox":
+			if (element.checked == true) {
+				checkedArray.push(element.value);
+			} else {
+				checkedArray.pop(element.value);
+			}
+			break;
+		default:
+			break;
+	}
+	// Course list needs to be reset to default before filtering.
+	resetCourseList()
 	filterCourses()
 } // getCourses
 
+function resetCourseList() {
+	if(!courseListDOM) {
+		// Clone initial dom state. Courselist without any filtering.
+		courseListDOM = document.getElementById("booked").cloneNode(true);
+	} else {
+		// Resetting the dom to initial state. Courselist without any filtering.
+		document.getElementById("booked").replaceWith(courseListDOM.cloneNode(true))
+	}
+}
+
 function filterCourses() {
+	// skip filtering if nothing has been checked.
+	if(!checkedArray.length) {
+		return
+	}
+
 	var coursesDom = document.getElementById("booked");
 	for(var i = coursesDom.length - 1; i >= 0; i --) {
 		var coursesStr = coursesDom[i].dataset.courses

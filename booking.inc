@@ -189,8 +189,8 @@ $available = array(
 					} // for
 				} // for
 			} // if
-			
 
+		
 			// sort the tutorsCanTutor according to the order of courses
 			uasort($tutorsCanTutor, function ($a, $b) use ($courses) {
 				$indexA = array_search($a, array_keys($courses));
@@ -259,8 +259,9 @@ $available = array(
 						} // if
 			
 						//displays value as an option if it has not been booked
+						$coursesCanTutor = implode(",", $phparray[$i]['course']);
 						if (!$invalidOption) {
-							echo "<option value='$value' data-courses='join(",", $phparray[$i]['course'])'> $value </option>";
+							echo "<option value='$value' data-courses='$coursesCanTutor'> $value </option>";
 						} // if
 					} //foreach 
 				} // for
